@@ -1,15 +1,13 @@
 from typing import Optional
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi import FastAPI
 from pydantic import BaseModel
+from fastapi import FastAPI
+from mangum import Mangum
+from fastapi.middleware import Middleware
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-origins = [
-    "http://localhost.tiangolo.com",
-    "https://localhost.tiangolo.com",
-    "http://localhost",
-    "http://localhost:8080",
-]
+origins = ["*"]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
